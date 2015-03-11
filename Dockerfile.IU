@@ -15,7 +15,7 @@ RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
 # the netbeans image
 RUN apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module
 
-ENV IDEA_TARBALL ideaIC-14.0.3.tar.gz
+ENV IDEA_TARBALL ideaIU-14.0.3.tar.gz
 
 RUN wget http://download.jetbrains.com/idea/${IDEA_TARBALL} -O /tmp/intellij.tar.gz -q && \
     echo 'Installing IntelliJ IDEA $IDEA_TARBALL' && \
