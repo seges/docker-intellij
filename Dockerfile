@@ -15,7 +15,9 @@ RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
 # the netbeans image
 RUN apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module
 
-ENV IDEA_TARBALL ideaIC-14.0.3.tar.gz
+RUN apt-get install -y subversion git mercurial
+
+ENV IDEA_TARBALL ideaIC-14.1.tar.gz
 
 RUN wget http://download.jetbrains.com/idea/${IDEA_TARBALL} -O /tmp/intellij.tar.gz -q && \
     echo 'Installing IntelliJ IDEA $IDEA_TARBALL' && \
@@ -33,6 +35,13 @@ RUN chmod +x /usr/local/bin/intellij && \
     chmod 0440 /etc/sudoers.d/developer && \
     chown developer:developer -R /home/developer && \
     chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
+
+RUN locale-gen --no-purge en_US.UTF-8
+RUN update-locale LANG=en_US.UTF-8
+RUN dpkg-reconfigure locales
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 
 USER developer
 ENV HOME /home/developer

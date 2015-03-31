@@ -1,2 +1,2 @@
 echo 'This will take a lot of time...'
-docker build -f Dockerfile.IU -t fgrehm/intellij-idea:v14.0.3-IU .
+docker build -f Dockerfile.IU -t fgrehm/intellij-idea:v14.1-IU .
