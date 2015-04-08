@@ -25,6 +25,13 @@ RUN wget http://download.jetbrains.com/idea/${IDEA_TARBALL} -O /tmp/intellij.tar
     tar -xf /tmp/intellij.tar.gz --strip-components=1 -C /opt/intellij && \
     rm /tmp/intellij.tar.gz
 
+RUN locale-gen --no-purge en_US.UTF-8
+RUN update-locale LANG=en_US.UTF-8
+RUN dpkg-reconfigure locales
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
 ADD run /usr/local/bin/intellij
 
 RUN chmod +x /usr/local/bin/intellij && \
@@ -35,13 +42,6 @@ RUN chmod +x /usr/local/bin/intellij && \
     chmod 0440 /etc/sudoers.d/developer && \
     chown developer:developer -R /home/developer && \
     chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
-
-RUN locale-gen --no-purge en_US.UTF-8
-RUN update-locale LANG=en_US.UTF-8
-RUN dpkg-reconfigure locales
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
 
 USER developer
 ENV HOME /home/developer
