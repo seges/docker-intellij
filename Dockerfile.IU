@@ -17,7 +17,8 @@ RUN apt-get update && apt-get install -y libgtk2.0-0 libcanberra-gtk-module
 
 RUN apt-get install -y subversion git mercurial
 
-ENV IDEA_TARBALL ideaIU-14.1.4.tar.gz
+#ENV IDEA_TARBALL ideaIU-14.1.4.tar.gz
+ENV IDEA_TARBALL ideaIU-143.1015.7.tar.gz
 
 RUN wget http://download.jetbrains.com/idea/${IDEA_TARBALL} -O /tmp/intellij.tar.gz -q && \
     echo 'Installing IntelliJ IDEA $IDEA_TARBALL' && \
